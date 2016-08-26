@@ -72,20 +72,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SearchBar = function (_Component) {
   _inherits(SearchBar, _Component);
 
-  function SearchBar() {
+  function SearchBar(props) {
     _classCallCheck(this, SearchBar);
 
-    return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+    _this.state = { term: '' };
+    return _this;
   }
 
   _createClass(SearchBar, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'form',
         { className: 'input-group' },
         _react2.default.createElement('input', {
-          placeholder: 'Type something here' }),
+          value: this.state.term,
+          className: 'form-control',
+          placeholder: 'Type something here',
+          onChange: function onChange(event) {
+            return _this2.setState({ term: event.target.value });
+          } }),
         _react2.default.createElement(
           'span',
           { className: 'input-group-btn' },
