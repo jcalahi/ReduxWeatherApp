@@ -4,31 +4,35 @@ var browserify = require('browserify');
 var browserSync = require('browser-sync');
 var source = require('vinyl-source-stream');
 
+gulp.task('reload', browserSync.reload);
+
 gulp.task('build-js', function() {
     return browserify({
-      entries: ['./app/src/components/main.js'],
+      entries: ['./app/src/index.js'],
       transform: babelify
     })
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./app/'));
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('rebuild-js', ['build-js'], browserSync.reload);
 
 gulp.task('watch-files', function() {
   gulp.watch([
-    './app/*.html'
-  ], browserSync.reload);
+    'index.html'
+  ], ['reload']);
   gulp.watch([
-    './app/src/**/*.js'
+    './app/src/!(index)/*.js'
   ], ['rebuild-js']);
 });
 
 gulp.task('init', function() {
   browserSync.init({
-    server: ['app'],
-    browser: 'Chrome'
+    server: {
+      baseDir: './',
+      index: 'index.html'
+    }
   });
 });
 
