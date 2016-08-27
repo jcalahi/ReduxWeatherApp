@@ -78,14 +78,13 @@ var SearchBar = function (_Component) {
     var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
 
     _this.state = { term: '' };
+    _this.onChangeInput = _this.onChangeInput.bind(_this);
     return _this;
   }
 
   _createClass(SearchBar, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react2.default.createElement(
         'form',
         { className: 'input-group' },
@@ -93,9 +92,7 @@ var SearchBar = function (_Component) {
           value: this.state.term,
           className: 'form-control',
           placeholder: 'Type something here',
-          onChange: function onChange(event) {
-            return _this2.setState({ term: event.target.value });
-          } }),
+          onChange: this.onChangeInput }),
         _react2.default.createElement(
           'span',
           { className: 'input-group-btn' },
@@ -106,6 +103,11 @@ var SearchBar = function (_Component) {
           )
         )
       );
+    }
+  }, {
+    key: 'onChangeInput',
+    value: function onChangeInput(event) {
+      this.setState({ term: event.target.value });
     }
   }]);
 
