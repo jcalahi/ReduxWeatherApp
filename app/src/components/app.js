@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={createStoreWithMiddleWare(reducers)}>
-        <div>
+        <div className="container">
           <SearchBar />
           <WeatherList />
         </div>

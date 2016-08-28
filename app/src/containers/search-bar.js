@@ -20,7 +20,7 @@ class SearchBar extends Component {
           placeholder="Get forecast of Philippine cities"
           onChange={this.onChangeInput} />
         <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Search</button>
+          <button type="submit" className="btn btn-primary">Search</button>
         </span>
       </form>
     );

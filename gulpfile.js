@@ -20,7 +20,8 @@ gulp.task('rebuild-js', ['build-js'], browserSync.reload);
 
 gulp.task('watch-files', function() {
   gulp.watch([
-    'index.html'
+    'index.html',
+    './app/assets/css/styles.css'
   ], ['reload']);
   gulp.watch([
     './app/src/!(index)/*.js'
