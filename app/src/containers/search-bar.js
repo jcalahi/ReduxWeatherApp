@@ -17,7 +17,7 @@ class SearchBar extends Component {
         <input
           value={this.state.term}
           className="form-control"
-          placeholder="Type something here"
+          placeholder="Get forecast of Philippine cities"
           onChange={this.onChangeInput} />
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Search</button>
@@ -32,12 +32,16 @@ class SearchBar extends Component {
     event.preventDefault();
     this.props.fetchWeather(this.state.term);
     // reset the field after doing search
-    //this.setState({ term: ' '});
+    this.setState({ term: ' '});
   }
+}
+
+function mapStateToProps(state) {
+  return { state: state.weather };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchWeather }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
